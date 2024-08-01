@@ -533,4 +533,53 @@ extension AccountTradeEndpoints on BinanceFutures {
         ? Left(r.left)
         : Right(List<Leverage>.from(r.right.map((e) => Leverage.fromMap(e)))));
   }
+
+  ///new test order
+  Future<Either<String, Order>> newOrderTest({
+    required String symbol,
+    required Side side,
+    PositionSide? positionSide,
+    required OrderType type,
+    TimeInForce? timeInForce,
+    String? quantity,
+    bool? reduceOnly,
+    String? price,
+    String? newClientOrderId,
+    String? stopPrice,
+    bool? closePosition,
+    String? activationPrice,
+    String? callbackRate,
+    String? workingType,
+    String? newOrderRespType,
+    int? recvWindow,
+  }) {
+    Map<String, String> params = {
+      'symbol': symbol,
+      'side': side.toStr(),
+      'type': type.toStr(),
+    };
+    if (positionSide != null) params['positionSide'] = positionSide.toStr();
+    if (price != null) params['price'] = price;
+    if (quantity != null) params['quantity'] = quantity;
+    if (timeInForce != null) params['timeInForce'] = timeInForce.toStr();
+    if (reduceOnly != null) params['reduceOnly'] = reduceOnly.toString();
+    if (newClientOrderId != null) params['newClientOrderId'] = newClientOrderId;
+    if (stopPrice != null) params['stopPrice'] = stopPrice;
+    if (closePosition != null) {
+      params['closePosition'] = closePosition.toString();
+    }
+    if (activationPrice != null) params['activationPrice'] = activationPrice;
+    if (callbackRate != null) params['callbackRate'] = callbackRate;
+    if (workingType != null) params['workingType'] = workingType;
+    if (newOrderRespType != null) params['newOrderRespType'] = newOrderRespType;
+    if (recvWindow != null) params['recvWindow'] = recvWindow.toString();
+    return sendRequest(
+      path: 'fapi/v1/order/test',
+      type: RequestType.POST,
+      params: params,
+      keyRequired: true,
+      signatureRequired: true,
+      timestampRequired: true,
+    ).then((r) => r.isLeft ? Left(r.left) : Right(Order.fromMap(r.right)));
+  }
 }
