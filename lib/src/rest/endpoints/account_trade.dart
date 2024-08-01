@@ -535,7 +535,7 @@ extension AccountTradeEndpoints on BinanceFutures {
   }
 
   ///new test order
-  Future<Either<String, Order>> newOrderTest({
+  Future<Either<String, Map>> newOrderTest({
     required String symbol,
     required Side side,
     PositionSide? positionSide,
@@ -580,6 +580,6 @@ extension AccountTradeEndpoints on BinanceFutures {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(Order.fromMap(r.right)));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(r.right));
   }
 }
