@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:binance_futures/src/common/classes.dart';
 import 'package:binance_futures/src/common/enums.dart';
 
@@ -259,13 +262,61 @@ class Ticker24hStatistics {
 
 class TickerPrice {
   String symbol;
-  double price;
-  int time;
+  String priceChange;
+  String priceChangePercent;
+  String weightedAvgPrice;
+  String lastPrice;
+  String lastQty;
+  String openPrice;
+  String highPrice;
+  String lowPrice;
+  String volume;
+  String quoteVolume;
+  int openTime;
+  int closeTime;
+  int firstId;
+  int lastId;
+  int count;
 
-  TickerPrice.fromMap(Map m)
-      : symbol = m['symbol'],
-        price = double.parse(m['price']),
-        time = m['time'];
+  TickerPrice({
+    required this.symbol,
+    required this.priceChange,
+    required this.priceChangePercent,
+    required this.weightedAvgPrice,
+    required this.lastPrice,
+    required this.lastQty,
+    required this.openPrice,
+    required this.highPrice,
+    required this.lowPrice,
+    required this.volume,
+    required this.quoteVolume,
+    required this.openTime,
+    required this.closeTime,
+    required this.firstId,
+    required this.lastId,
+    required this.count,
+  });
+
+  factory TickerPrice.fromMap(Map<String, dynamic> map) {
+    return TickerPrice(
+      symbol: map['symbol'] as String,
+      priceChange: map['priceChange'] as String,
+      priceChangePercent: map['priceChangePercent'] as String,
+      weightedAvgPrice: map['weightedAvgPrice'] as String,
+      lastPrice: map['lastPrice'] as String,
+      lastQty: map['lastQty'] as String,
+      openPrice: map['openPrice'] as String,
+      highPrice: map['highPrice'] as String,
+      lowPrice: map['lowPrice'] as String,
+      volume: map['volume'] as String,
+      quoteVolume: map['quoteVolume'] as String,
+      openTime: map['openTime'] as int,
+      closeTime: map['closeTime'] as int,
+      firstId: map['firstId'] as int,
+      lastId: map['lastId'] as int,
+      count: map['count'] as int,
+    );
+  }
 }
 
 class BookTicker {
