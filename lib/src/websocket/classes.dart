@@ -277,7 +277,7 @@ class LiquidationOrder {
 
 class WsListenKeyExpiredEvent {
   String eventType;
-  int eventTime;
+  String eventTime;
 
   WsListenKeyExpiredEvent.fromMap(Map m)
       : eventType = m['e'],
