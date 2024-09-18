@@ -716,15 +716,15 @@ class LeverageBracket {
   int notionalCap;
   int notionalFloor;
   double maintMarginRatio;
-  int cum;
+  double cum;
 
   LeverageBracket.fromMap(Map m)
       : bracket = m['bracket'],
         initialLeverage = m['initialLeverage'],
         notionalCap = m['notionalCap'],
         notionalFloor = m['notionalFloor'],
-        maintMarginRatio = double.parse(m['maintMarginRatio']),
-        cum = m['cum'];
+        maintMarginRatio = m['maintMarginRatio'],
+        cum = m['cum'] is int ? double.parse(m['cum']) : m['cum'];
 }
 
 class Leverage {
