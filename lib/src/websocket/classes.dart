@@ -387,7 +387,6 @@ class OrderUpdate {
   String clientOrderId;
   Side side;
   OrderType orderType;
-  TimeInForce timeinForce;
   double originalQuantity;
   double originalPrice;
   double averagePrice;
@@ -419,7 +418,6 @@ class OrderUpdate {
         clientOrderId = m['c'],
         side = (m['S'] as String).toSideEnum(),
         orderType = (m['o'] as String).toOrderTypeEnum(),
-        timeinForce = (m['f'] as String).toTimeInForceEnum(),
         originalQuantity = double.parse(m['q']),
         originalPrice = double.parse(m['p']),
         averagePrice = double.parse(m['ap']),
