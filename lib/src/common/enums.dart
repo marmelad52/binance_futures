@@ -93,7 +93,7 @@ enum TimeInForce {
   FOK,
   GTX,
   GTE_GTC,
-  NONE, // Добавлено значение NONE
+  NONE,
 }
 
 extension TimeInForceExt on TimeInForce {
@@ -102,31 +102,30 @@ extension TimeInForceExt on TimeInForce {
 
 extension EnumExt on String {
   Side toSideEnum() => Side.values.firstWhere(
-        (s) => s.name == this,
-        orElse: () => Side.NONE,
+        (s) => s.name.toLowerCase() == toLowerCase(),
       );
+
   PositionSide toPositionSideEnum() => PositionSide.values.firstWhere(
-        (s) => s.name == this,
-        orElse: () => PositionSide.NONE,
+        (s) => s.name.toLowerCase() == toLowerCase(),
       );
+
   OrderType toOrderTypeEnum() => OrderType.values.firstWhere(
-        (s) => s.name == this,
-        orElse: () => OrderType.NONE,
+        (s) => s.name.toLowerCase() == toLowerCase(),
       );
+
   ExecutionType toExecutionTypeEnum() => ExecutionType.values.firstWhere(
-        (s) => s.name == this,
-        orElse: () => ExecutionType.NONE,
+        (s) => s.name.toLowerCase() == toLowerCase(),
       );
+
   OrderStatus toOrderStatusEnum() => OrderStatus.values.firstWhere(
-        (s) => s.name == this,
-        orElse: () => OrderStatus.NONE,
+        (s) => s.name.toLowerCase() == toLowerCase(),
       );
+
   Interval toIntervalEnum() => Interval.values.firstWhere(
-        (s) => s.name.split("_").last == this,
-        orElse: () => Interval.NONE,
+        (s) => s.name.split("_").last.toLowerCase() == toLowerCase(),
       );
+
   TimeInForce toTimeInForceEnum() => TimeInForce.values.firstWhere(
-        (s) => s.name == this,
-        orElse: () => TimeInForce.NONE,
+        (s) => s.name.toLowerCase() == toLowerCase(),
       );
 }
