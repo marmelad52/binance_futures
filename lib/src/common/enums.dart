@@ -1,6 +1,7 @@
 enum Side {
   BUY,
   SELL,
+  NONE, // Добавлено значение NONE
 }
 
 extension SideExt on Side {
@@ -11,6 +12,7 @@ enum PositionSide {
   LONG,
   SHORT,
   BOTH,
+  NONE, // Добавлено значение NONE
 }
 
 extension PosSideExt on PositionSide {
@@ -26,6 +28,7 @@ enum OrderType {
   TAKE_PROFIT_MARKET,
   TRAILING_STOP_MARKET,
   LIQUIDATION,
+  NONE, // Добавлено значение NONE
 }
 
 extension OrderTypeExt on OrderType {
@@ -48,6 +51,7 @@ enum Interval {
   INTERVAL_3d,
   INTERVAL_1w,
   INTERVAL_1M,
+  NONE, // Добавлено значение NONE
 }
 
 extension IntervalExt on Interval {
@@ -63,6 +67,7 @@ enum OrderStatus {
   EXPIRED,
   NEW_INSURANCE,
   NEW_ADL,
+  NONE, // Добавлено значение NONE
 }
 
 extension OrderStatusExt on OrderStatus {
@@ -75,6 +80,7 @@ enum ExecutionType {
   CALCULATED,
   EXPIRED,
   TRADE,
+  NONE, // Добавлено значение NONE
 }
 
 extension ExecutionTypeExt on ExecutionType {
@@ -86,6 +92,8 @@ enum TimeInForce {
   IOC,
   FOK,
   GTX,
+  GTE_GTC,
+  NONE, // Добавлено значение NONE
 }
 
 extension TimeInForceExt on TimeInForce {
@@ -93,17 +101,32 @@ extension TimeInForceExt on TimeInForce {
 }
 
 extension EnumExt on String {
-  Side toSideEnum() => Side.values.firstWhere((s) => s.name == this);
-  PositionSide toPositionSideEnum() =>
-      PositionSide.values.firstWhere((s) => s.name == this);
-  OrderType toOrderTypeEnum() =>
-      OrderType.values.firstWhere((s) => s.name == this);
-  ExecutionType toExecutionTypeEnum() =>
-      ExecutionType.values.firstWhere((s) => s.name == this);
-  OrderStatus toOrderStatusEnum() =>
-      OrderStatus.values.firstWhere((s) => s.name == this);
-  Interval toIntervalEnum() => Interval.values
-      .firstWhere((s) => s.name.split("_").last == this);
-  TimeInForce toTimeInForceEnum() =>
-      TimeInForce.values.firstWhere((s) => s.name == this);
+  Side toSideEnum() => Side.values.firstWhere(
+        (s) => s.name == this,
+        orElse: () => Side.NONE,
+      );
+  PositionSide toPositionSideEnum() => PositionSide.values.firstWhere(
+        (s) => s.name == this,
+        orElse: () => PositionSide.NONE,
+      );
+  OrderType toOrderTypeEnum() => OrderType.values.firstWhere(
+        (s) => s.name == this,
+        orElse: () => OrderType.NONE,
+      );
+  ExecutionType toExecutionTypeEnum() => ExecutionType.values.firstWhere(
+        (s) => s.name == this,
+        orElse: () => ExecutionType.NONE,
+      );
+  OrderStatus toOrderStatusEnum() => OrderStatus.values.firstWhere(
+        (s) => s.name == this,
+        orElse: () => OrderStatus.NONE,
+      );
+  Interval toIntervalEnum() => Interval.values.firstWhere(
+        (s) => s.name.split("_").last == this,
+        orElse: () => Interval.NONE,
+      );
+  TimeInForce toTimeInForceEnum() => TimeInForce.values.firstWhere(
+        (s) => s.name == this,
+        orElse: () => TimeInForce.NONE,
+      );
 }

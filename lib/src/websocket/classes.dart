@@ -444,6 +444,7 @@ class OrderUpdate {
         callbackRate = double.parse(m['cr'] ?? "0"),
         realizedProfit = double.parse(m['rp']) {
     print(m.toString());
+    print(m['x'].toString());
   }
 }
 
