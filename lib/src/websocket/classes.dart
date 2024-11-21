@@ -442,7 +442,9 @@ class OrderUpdate {
         isCloseAll = m['cp'] ?? false,
         activationPrice = double.parse(m['AP'] ?? "0"),
         callbackRate = double.parse(m['cr'] ?? "0"),
-        realizedProfit = double.parse(m['rp']);
+        realizedProfit = double.parse(m['rp']) {
+    print(m.toString());
+  }
 }
 
 class WsOrderUpdateEvent {
