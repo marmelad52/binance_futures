@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:binance_futures/src/common/enums.dart';
 
 import '../common/classes.dart';
@@ -379,7 +381,9 @@ class WsAccountUpdateEvent {
       : eventType = m['e'],
         eventTime = m['E'],
         transaction = m['T'],
-        data = UpdateData.fromMap(m['a']);
+        data = UpdateData.fromMap(m['a']) {
+    print('WsAccountUpdateEvent: ${json.encode(m)}');
+  }
 }
 
 class OrderUpdate {
@@ -455,7 +459,9 @@ class WsOrderUpdateEvent {
       : eventType = m['e'],
         eventTime = m['E'],
         transactionTime = m['T'],
-        orderUpdate = OrderUpdate.fromMap(m['o']);
+        orderUpdate = OrderUpdate.fromMap(m['o']) {
+    print('WsOrderUpdateEvent: ${json.encode(m)}');
+  }
 }
 
 class LeverageUpdate {
